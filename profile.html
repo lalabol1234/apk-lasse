@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.login-screen {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.key {
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.enter {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.code-input {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    </style>
+    <title>Lala-Home OS Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-screen">
+            <div class="number-pad">
+                <div class="row">
+                    <div class="key" onclick="appendToCode('1')">1</div>
+                    <div class="key" onclick="appendToCode('2')">2</div>
+                    <div class="key" onclick="appendToCode('3')">3</div>
+                </div>
+                <div class="row">
+                    <div class="key" onclick="appendToCode('4')">4</div>
+                    <div class="key" onclick="appendToCode('5')">5</div>
+                    <div class="key" onclick="appendToCode('6')">6</div>
+                </div>
+                <div class="row">
+                    <div class="key" onclick="appendToCode('7')">7</div>
+                    <div class="key" onclick="appendToCode('8')">8</div>
+                    <div class="key" onclick="appendToCode('9')">9</div>
+                </div>
+                <div class="row">
+                    <div class="key" onclick="appendToCode('0')">0</div>
+                    <div class="key" onclick="deleteLastDigit()">Del</div>
+                    <div class="key enter" onclick="submitCode()">Enter</div>
+                </div>
+            </div>
+            <div class="code-input" id="codeInput"></div>
+        </div>
+    </div>
+    <script>
+        let code = '';
+
+function appendToCode(digit) {
+    code += digit;
+    updateCodeInput();
+}
+
+function deleteLastDigit() {
+    code = code.slice(0, -1);
+    updateCodeInput();
+}
+
+function submitCode() {
+    // Check if the entered code is correct (initially set to '0000' for demonstration)
+    if (code === '0000') {
+        alert('Login Successful!'); // You can replace this with your login logic
+    } else {
+        alert('Invalid Code. Please try again.');
+        code = ''; // Reset the code on unsuccessful attempts
+        updateCodeInput();
+    }
+}
+
+function updateCodeInput() {
+    document.getElementById('codeInput').innerText = code.replace(/./g, '*');
+}
+
+    </script>
+</body>
+</html>
